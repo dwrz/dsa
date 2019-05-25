@@ -5,17 +5,8 @@
 #include "vector.h"
 
 static void grow_vector(Vector *v) {
-	int newCapacity = v->capacity == 0 ? 1 : v->capacity * 2;
-	int *newData = calloc(newCapacity, sizeof(int));
-
-	for (int i = 0; i < v->capacity; i++) {
-		newData[i] = v->data[i];
-	}
-
-	free(v->data);
-
-	v->capacity = newCapacity;
-	v->data = newData;
+	v->capacity = v->capacity == 0 ? 1 : v->capacity * 2;
+	v->data = (int *)realloc(v->data, sizeof(int) * v->capacity);
 }
 
 void append_vector(Vector *v, int elem) {
@@ -38,7 +29,7 @@ Vector new_vector(int capacity) {
 
 	// TODO: What if calloc() fails?
 	Vector v = {
-		    .data = calloc(capacity, sizeof(int)),
+		    .data = (int *)calloc(capacity, sizeof(int)),
 		    .capacity = capacity,
 		    .size = 0,
 	};
