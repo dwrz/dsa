@@ -13,10 +13,17 @@ void test_delete_vector(void) {
 }
 
 int main(void) {
-	Vector v = new_vector(2);
+	Vector v = new_vector(0);
+
+	print_vector(&v);
+
+	for (int i = 0; i < 20; i++) {
+		append_vector(&v, i);
+	}
 
 	print_vector(&v);
 
 	test_delete_vector();
+
 
 }
