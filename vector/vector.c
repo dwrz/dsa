@@ -18,6 +18,19 @@ static void grow_vector(Vector *v) {
 	v->data = newData;
 }
 
+void append_vector(Vector *v, int elem) {
+	if (v->size == v->capacity) grow_vector(v);
+
+	v->size++;
+
+	if (v->size == 0) {
+		v->data[0] = elem;
+		return;
+	}
+
+	v->data[v->size - 1] = elem;
+}
+
 void delete_vector(Vector *v) {
 	free(v -> data);
 
