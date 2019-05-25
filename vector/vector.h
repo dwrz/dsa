@@ -4,6 +4,8 @@ typedef struct Vector {
 	int size;
 } Vector;
 
+void append_vector(Vector *v, int elem);
+
 void delete_vector(Vector *v);
 
 Vector new_vector(int capacity);
