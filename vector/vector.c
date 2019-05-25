@@ -4,6 +4,20 @@
 
 #include "vector.h"
 
+static void grow_vector(Vector *v) {
+	int newCapacity = v->capacity == 0 ? 1 : v->capacity * 2;
+	int *newData = calloc(newCapacity, sizeof(int));
+
+	for (int i = 0; i < v->capacity; i++) {
+		newData[i] = v->data[i];
+	}
+
+	free(v->data);
+
+	v->capacity = newCapacity;
+	v->data = newData;
+}
+
 void delete_vector(Vector *v) {
 	free(v -> data);
 
